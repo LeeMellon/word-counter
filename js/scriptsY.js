@@ -16,7 +16,6 @@ $(document).ready(function() {
     }
 
     return dictKeys;
-    // console.log(dictKeys);
   }
 
   var dict = {};
@@ -25,12 +24,8 @@ $(document).ready(function() {
     var newList =[];
     event.preventDefault();
     var input = $("#input").val();
-    input = input.replace(/[\[\].,\/#!$%\^&\*;:{}=_`~()—”“"?\-]/g, " ").replace("", " ").toLowerCase();
-    input = input.split(" ").filter(word => word.length > 0);
-
-    // input.forEach(function(word){
-    //   newList.push(word);
-    // });
+    input = input.replace(/[']/, "").toLowerCase();
+    input = input.split(/[\W_]/g).filter(word => word.length > 0);
     newList = input;
 
     newList.forEach(function(listItem){
@@ -40,8 +35,6 @@ $(document).ready(function() {
         dict[listItem] = 1
       }
     });
-
-    list = [("one",4), ("two",5)]
 
     var dictKeys = sortArrays(dict);
     $("#outputList").text("");
@@ -58,5 +51,4 @@ $(document).ready(function() {
     else
       alert(search + " was not found.");
   });
-
 });
